@@ -96,27 +96,27 @@ var quizQuestion = {
     questions: [
         {
             questionText: "Which type of orientes programming Javascript language is?",
-            questionAnswer: ["<Object-oriented>", "<Object-Based>", "<Assembly-language>","<High-level>"],
+            questionAnswer: ["Object-oriented", "Object-Based", "Assembly-language","High-level"],
             answer: "Object-Based"
         },
         {
             questionText: "Which one of the following is also known as a Conditional Expression?",
-            questionAnswer: ["<Alternative to if-else>","<Switch statement>", "<If-then-else statement", "Immediate if"],
+            questionAnswer: ["Alternative to if-else","Switch statement", "If-then-else statement", "Immediate if"],
             answer: "Immediate if"
         },
         {
             questionText: "In Javascript, what is a block of statement?",
-            questionAnswer: ["<Conditional block>", "<Block that combines a number of statements into a single compound statement>", "<Both conditional block and a single statement>", "<Block that contains a single statement>"],
+            questionAnswer: ["Conditional block", "Block that combines a number of statements into a single compound statement", "Both conditional block and a single statement", "Block that contains a single statement"],
             answer: "Block that combine a number of statements into a signle compound statement"
         },
         {
             questionText: "When interpreter encounters and empty statements, what will it do?",
-            questionAnswer: ["<Shows a warning>", "<Prompts to complete the statement>", "<Throws an error>", "<Ignores the statements>"],
+            questionAnswer: ["Shows a warning", "Prompts to complete the statement", "Throws an error", "Ignores the statements"],
             answer: "Ignores the statements"
         },
         {
-            questionText: "The <function> and <var> are known as?",
-            questionAnswer: ["<Keywords", "<Data types>", "<Declaration statements>", "<Prototypes>"],
+            questionText: "The function and var are known as?",
+            questionAnswer: ["Keywords", "Data types", "Declaration statements", "Prototypes"],
             answer: "Declaration statements"
         },
     ],

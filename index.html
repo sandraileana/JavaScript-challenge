@@ -64,7 +64,7 @@
                 <br>
 
                 <!-- Displays the current question -->
-                <div class="display-question"></div>
+                <div class="question-display"></div>
                 <br>
 
                 <!-- Displays the button array -->
@@ -76,7 +76,7 @@
                 </div>
 
                 <!-- Displays the last page with scores, asks for initials to record high scores -->
-                <div class="lastpage" style="display: none">
+                <div class="last-page" style="display: none">
                     <div id="message"></div>
                     <div id="score"></div>
                     <br>
@@ -104,6 +104,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Link to the source for correct answer audio -->
+    <audio id="correct">
+        <source src="./Assets/media-source/correct-choice.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Link to the source for incorrect answer audio -->
+    <audio id="incorrect">
+        <source src="./Assets/media-source/wrong-answer.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Link to the source for timeout audio -->
+    <audo id="timeout">
+        <source src="./Assets/media-source/game-over.mp3" type="audio/mpeg">
+    </audo>
 
     <!-- Link to the jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

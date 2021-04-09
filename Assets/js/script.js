@@ -10,7 +10,7 @@ $(".purple-button").on("click", function(){
     $(".timer").show();
     $(".timer").html("Time: 75");
     $(".highscoreReport").hide();
-    $(".lastpage").hide();
+    $(".last-page").hide();
     $(".question-display").show();
     $("#button-display").show;
     quizQuestion.run();
@@ -18,7 +18,7 @@ $(".purple-button").on("click", function(){
     quizQuestion.correctAnswers = 0;
     quizQuestion.incorrectAnswers = 0;
     quizQuestion.getQuestion();
-    document.getElementById('userInput').value = "";
+    document.getElementById('user-input').value = "";
 })
 
 //When clicking on reset button it resets the game
@@ -28,7 +28,7 @@ $(".btn-secondary").on("click", function(){
     $(".timer").show();
     $(".timer").html("Time: 75");
     $(".highscoreReport").hide();
-    $(".lastpage").hide();
+    $(".last-page").hide();
     $(".question-display").show();
     $("#button-display").show;
     quizQuestion.run();
@@ -48,6 +48,12 @@ $("#send-initials").on("click", function(){
 // When clicking on clear it reset high scores, hide question and high score page, and shows quiz's instructions.
 $("#clear").on("click", function(){
     console.log("User has clicked on reset high scores");
+    localStorage.clear();
+    $("#highscoreArray").hide();
+})
+
+$("#return").on("click", function(){
+    console.log("User has clicked to go back from high scores");
     clearInterval(quizQuestion.countDownTimer);
     $(".Highscores").show();
     $(".timer").show();
@@ -119,7 +125,7 @@ var quizQuestion = {
 
     run: function (){
         clearInterval(this.countDownTimer);
-        this.countDownTimer = setInterval(this.decrement, 10000);
+        this.countDownTimer = setInterval(this.decrement, 1000);
         quizQuestion.counter = 75;
     },
 
@@ -127,7 +133,7 @@ var quizQuestion = {
 
     decrement: function () {
         quizQuestion.counter--;
-        $(".Timer").html("Time: " + quiz)
+        $(".Timer").html("Time: " + quizQuestion.counter);
         if (quizQuestion.counter <= 0) {
             $("#timeout")[0].play();
             quizQuestion.counter = 0;
@@ -168,7 +174,7 @@ var quizQuestion = {
     checkAnswer: function (selectedAnswer){
         console.log(this.questions[this.questionNumber]);
         
-        if (selectedAnswer === this.this.questions[this.questionNumber].answer){
+        if (selectedAnswer === this.questions[this.questionNumber].answer){
             console.log("correct");
             $("#correct")[0].play();
             this.correctAnswers++;
@@ -195,7 +201,7 @@ var quizQuestion = {
             } else {
                 quizQuestion.lastPage();
             }
-        }, 10000
+        }, 1000
         )
     },
 
@@ -209,11 +215,11 @@ var quizQuestion = {
         $("#button-display").empty();
         $(".response").empty();
         $(".timer").hide();
-        $("lastpage").show();
+        $("last-page").show();
         $("#message").html("<h2>You are done</h2><p>Your results are:</p>");
         $("#score").html("Your final score is: " + quizQuestion.counter);
-        $("#correct").html("Correct Answers: " + this.correctAnswers);
-        $("#incorrect").html("Incorrect Answers: " + this.incorrectAnswers);
+        //$("#totalcorrect").html("Correct Answers: " + this.correctAnswers);
+        //$("#totalincorrect").html("Incorrect Answers: " + this.incorrectAnswers);
         clearInterval(quizQuestion.countDownTimer);
     },
 
@@ -225,24 +231,27 @@ var quizQuestion = {
         $(".timer").hide();
         $(".timer").html("Time: 75");
         $(".card").hide();
-        $(".lastpage").hide();
+        $(".last-page").hide();
         $(".question-display").hide();
         $("#button-display").hide();
         console.log("Highscore page completed");
 
-        var boxValue = document.getElementById('userInput').value.toUpperCase().substring(0, 4);
+        var boxValue = document.getElementById('user-input').value.toUpperCase().substring(0, 4);
         if (boxValue == false){
             console.log("no value entered for initials: " + boxValue);
             boxValue = "***";
         };
+        
+        const finalscore = {
+            score:quizQuestion.counter,
+            initials: boxValue
+        }
 
-        const MAX_HIGHEST_SCORES = 5;
-
-        console.log(scorevalues);
+        console.log(finalscore);
         const HighscoreArray = JSON.parse(localStorage.getItem("highscoreArray")) || [];
         console.log(HighscoreArray);
 
-        HighscoreArray.push(scorevalues);
+        HighscoreArray.push(finalscore);
         console.log(highScoreArray);
 
         highScoreArray.sort((a,b) => b.score - a.score);
@@ -255,12 +264,12 @@ var quizQuestion = {
         
         const highestscorelist = document.getElementById("#HighscoreArray");
         const Highscores = JSON.parse(localStorage.getItem("highscoreArray")) || [];
-            highScoreArray.map(scorevalues) =>{
-                if(scorevalues.score !=0){
-                    console.log(scorevalues.initials + " ---- " + scorevalues.score);
-                    $("highscoreArray").append('<li>' + scorevalues.initials + " ---- " scorevalues.score + '</li>');
+            highScoreArray.map(finalscore => {
+                if(finalscore.score !=0){
+                    console.log(finalscore.initials + " ---- " + finalscore.score);
+                    $("#highscoreArray").append('<li>' + finalscore.initials + " ---- " + finalscore.score + '</li>');
                 }
-            };
+            });
 
     }
 }

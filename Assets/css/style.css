@@ -17,7 +17,7 @@ header {
     color: #ffffff;
 }
 
-.HighScores {
+.Highscores {
     text-align: left;
     float: left;
     align-content: left;
@@ -128,7 +128,7 @@ input {
     padding: 3px 1px 1px 1px;
 }
 
-#highscore li{
+#highscoreArray li{
     width: 100%;
     border: 1.5px dotted lightskyblue;
     background: plum;
